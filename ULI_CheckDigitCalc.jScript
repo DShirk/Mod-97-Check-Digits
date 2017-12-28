@@ -3,7 +3,7 @@
 <head>
 <style>
 p {
-style=ìfont-family: play, sans-serif;color:#003366;line-heigh:1.25em;test-align:justify;î;
+style=‚Äúfont-family: play, sans-serif;color:#003366;line-heigh:1.25em;test-align:justify;‚Äù;
 font-size: 14px;
 }
 </style>
@@ -32,7 +32,7 @@ font-size: 14px;
 <p id="uliCheckDigits"></p>
 
 <script>
-//CFPB supplied sample LEI + Loan Id in Reg. C Appendix C describing method of calculation: "10Bx939c5543TqA1144M999143X" which should result in "38" as check digits appended at end to be "10Bx939c5543TqA1144M999143X38".
+//CFPB supplied sample LEI + Loan Id in Reg. C Appendix C describing method of calculation: "10Bx939c5543TqA1144M999143X" which should result in "38" as check digits appended at end to be "10Bx939c5543TqA1144M999143X38" and 549300410TULSMMGDX9251506124 should have check digit of "58".
 
 function UliReplaceAlpha(strULIToCheck) {
 var toRemove = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
@@ -74,13 +74,13 @@ try {
 	strNumToCheck = String(longMod97) + strNumToCheck;
       }    
     
-    document.getElementById("longMod97").innerHTML = "The mod 97 result of the tested value is: " + longMod97;
+    document.getElementById("longMod97").innerHTML = "The mod 97 result of the tested value is: " + strNumToCheck;
 
 }
 catch(err) {
 	document.getElementById("longMod97").innerHTML = "Error: " + err;
 }
-return longMod97;
+return strNumToCheck;
 }
 
 
