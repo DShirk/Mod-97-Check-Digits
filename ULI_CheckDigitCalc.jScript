@@ -3,7 +3,7 @@
 <head>
 <style>
 p {
-style=ìfont-family: play, sans-serif;color:#003366;line-heigh:1.25em;test-align:justify;î;
+style=‚Äúfont-family: play, sans-serif;color:#003366;line-heigh:1.25em;test-align:justify;‚Äù;
 font-size: 14px;
 }
 </style>
@@ -74,13 +74,13 @@ try {
 	strNumToCheck = String(longMod97) + strNumToCheck;
       }    
     
-    document.getElementById("longMod97").innerHTML = "The mod 97 result of the tested value is: " + strNumToCheck; //longMod97;
+    document.getElementById("longMod97").innerHTML = "The mod 97 result of the tested value is: " + strNumToCheck;
 
 }
 catch(err) {
 	document.getElementById("longMod97").innerHTML = "Error: " + err;
 }
-return strNumToCheck; //longMod97;
+return strNumToCheck;
 }
 
 
