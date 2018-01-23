@@ -147,7 +147,7 @@ if (strULIToCheck.indexOf(" ") != -1) throw "Tested ULI's check digits are: INVA
   if (strULIToCheck.length > 45) throw "Value entered is more than 45 characters. It is too long!";
  // if (strULIToCheck.length < 29) throw "Value entered is less than 45 characters. It is too short!";
   
-  if (LongMod97(UliReplaceAlpha(strULIToCheck)) == 1) {
+  if (LongMod97(UliReplaceAlpha(strULIToCheck)) == 1 && strULIToCheck.slice(-2) != "00") {
   	document.getElementById("uliCheckDigitValidator").innerHTML = "Tested ULI's check digits are: VALID";
     }
   else {
