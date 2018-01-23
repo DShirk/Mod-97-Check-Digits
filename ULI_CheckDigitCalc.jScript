@@ -143,20 +143,21 @@ function UliCheckDigitValidator() {
   document.getElementById("LEI").value = "";
   try {  
   strULIToCheck = document.getElementById("ULI").value;
-if (strULIToCheck.indexOf(" ") != -1) throw "Tested ULI's check digits are: INVALID! <br>Value entered contained spaces.";
+  if (strULIToCheck.indexOf(" ") != -1) throw "Tested ULI's check digits are: INVALID! <br>Value entered contained spaces.";
   if (strULIToCheck.length > 45) throw "Value entered is more than 45 characters. It is too long!";
  // if (strULIToCheck.length < 29) throw "Value entered is less than 45 characters. It is too short!";
   
-  if (LongMod97(UliReplaceAlpha(strULIToCheck)) == 1) {
-  	document.getElementById("uliCheckDigitValidator").innerHTML = "Tested ULI's check digits are: VALID";
-    }
+  strChkDig = strULIToCheck.slice(-2);
+  if (LongMod97(UliReplaceAlpha(strULIToCheck)) == 1 && strChkDig !== "99" && strChkDig !== "00" && strChkDig !== "01") {
+  document.getElementById("uliCheckDigitValidator").innerHTML = "Tested ULI's check digits are: VALID";
+  }
   else {
   	document.getElementById("uliCheckDigitValidator").innerHTML = "Tested ULI's check digits are: INVALID";
 	}
-}
-catch(err) {
+ }
+ catch(err) {
 	document.getElementById("uliCheckDigitValidator").innerHTML = "Error: " + err;
-}
+ }
 }
 </script>
 
