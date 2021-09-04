@@ -12,7 +12,7 @@ font-size: 14px;
 
 <hr></hr>
 <p>Enter an LEI and Loan Number of up to 43 total characters to append ULI check digits.</p>
-<input id="LEI" size="40">
+<input id="LEI" size="45">
 
 <button type="button" onclick="UliAppendCheckDigit()">Append</button>
 <p id="uliAppendCheckDigit" style="font-family:jura"; font-size: 24px></p>
@@ -20,7 +20,7 @@ font-size: 14px;
 
 <hr></hr>
 <p>Enter a ULI of 45 characters to validate its ULI check digits.</p>
-<input id="ULI" size="40">
+<input id="ULI" size="45">
 
 <button type="button" onclick="UliCheckDigitValidator()">Validate</button>
 <p id="uliCheckDigitValidator"></p>
