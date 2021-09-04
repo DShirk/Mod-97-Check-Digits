@@ -144,6 +144,9 @@ function UliAppendCheckDigit() {
 			if (strLoanNum.length > 23) {
 				strULICheckDigitAppendedList = strULICheckDigitAppendedList + ((i >0) ? ", " : "") + "Error: Item " + (i + 1) + " is > 23 characters";
 			}
+			if (strLoanNum.length < 1) {
+				strULICheckDigitAppendedList = strULICheckDigitAppendedList + ((i >0) ? ", " : "") + "Error: Item " + (i + 1) + " has no characters";
+			}
 			else {
 				var strULICheckDigitAppended = strLEIToCheck + strLoanNum + UliCheckDigit(strLEIMod97 + strLoanNum);
 
@@ -171,8 +174,6 @@ function UliCheckDigitValidator() {
 	document.getElementById("uliCheckDigits").innerHTML = "";
 	document.getElementById("uliAppendCheckDigit").innerHTML = "";
 	document.getElementById("uliCheckDigitValidator").innerHTML = "";
-	document.getElementById("LEI").value = "";
-	document.getElementById("LoanNums").value = "";
 	
 	try {  
 		strULIToCheck = document.getElementById("ULI").value;
