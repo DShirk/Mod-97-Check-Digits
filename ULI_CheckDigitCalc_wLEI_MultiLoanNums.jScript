@@ -22,8 +22,9 @@ font-size: 14px;
 
 
 <hr></hr>
-<p>Enter a ULI of 45 characters to validate its ULI check digits.</p>
-<input id="ULI" size="45">
+<p>Enter comma delimited list of 45 character ULIs to validate check digits.</p>
+<textarea id="ULIs" cols = "48" rows = "20"></textarea>
+
 
 <button type="button" onclick="UliCheckDigitValidator()">Validate</button>
 <p id="uliCheckDigitValidator"></p>
@@ -169,6 +170,8 @@ function UliAppendCheckDigit() {
 
 
 function UliCheckDigitValidator() {
+	var errAdd = "";
+	var strULICheckValidatedList = "";
 	document.getElementById("uliReplaceAlphaText").innerHTML = "";
 	document.getElementById("longMod97").innerHTML = "";
 	document.getElementById("uliCheckDigits").innerHTML = "";
@@ -176,17 +179,34 @@ function UliCheckDigitValidator() {
 	document.getElementById("uliCheckDigitValidator").innerHTML = "";
 	
 	try {  
-		strULIToCheck = document.getElementById("ULI").value;
-		if (strULIToCheck.indexOf(" ") != -1) throw "Tested ULI's check digits are: INVALID! <br>Value entered contained spaces.";
-		if (strULIToCheck.length > 45) throw "Value entered is more than 45 characters. It is too long!";
-		// if (strULIToCheck.length < 23) throw "Value entered is less than 23 characters (LEI = 20, CheckDigit =2, leaving no digits for loan number). It is too short!";
-	  	strChkDig = strULIToCheck.slice(-2);
-		if (LongMod97(UliReplaceAlpha(strULIToCheck)) == 1 && strChkDig !== "99" && strChkDig !== "00" && strChkDig !== "01") {
-			document.getElementById("uliCheckDigitValidator").innerHTML = "Tested ULI's check digits are: VALID";
-		}
-		else {
-			document.getElementById("uliCheckDigitValidator").innerHTML = "Tested ULI's check digits are: INVALID";
-		}
+		strULIsToCheck = document.getElementById("ULIs").value;
+		
+		strULIsToCheck = strULIsToCheck.replace(/ /g,"");
+		strULIsToCheck.replace(/[\n\r]+/g,"");
+		if (strULIsToCheck.slice(-1) == ",") strULIsToCheck = strULIsToCheck.slice(0,strULIsToCheck.length -1);
+		  
+		var strULIs_array = strULIsToCheck.split(',');
+		     
+		for (var i = 0; i < strULIs_array.length; i++) {
+		  
+			strULIToCheck = strULIs_array[i];
+	
+			if (strULIToCheck.length > 45) {
+				strULICheckValidatedList = strULICheckValidatedList + ((i >0) ? ", " : "") + "Error: Item " + (i + 1) + " is > 45 characters";
+			}
+			else {
+		  		strChkDig = strULIToCheck.slice(-2);
+				if (LongMod97(UliReplaceAlpha(strULIToCheck)) == 1 && strChkDig !== "99" && strChkDig !== "00" && strChkDig !== "01") {
+					strULICheckValidatedList = strULICheckValidatedList + ((i >0) ? ", " : "") + strULIToCheck + " is VALID";
+				}	
+				else {
+					strULICheckValidatedList = strULICheckValidatedList + ((i >0) ? ", " : "") + strULIToCheck + " is INVALID";
+				}
+			}
+		}	
+		
+		document.getElementById("uliCheckDigitValidator").innerHTML = "Check digits for ULIs tested are: " + strULICheckValidatedList;
+			
 	}
 	catch(err) {
 		document.getElementById("uliCheckDigitValidator").innerHTML = "Error: " + err;
